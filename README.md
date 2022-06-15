@@ -1,1 +1,1 @@
-# golang-ds-algo
+# Go DS & Algo
