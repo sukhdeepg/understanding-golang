@@ -6,6 +6,18 @@ import(
 	"net/http"
 )
 
+func formHandler(w http.ResponseWriter, r *http.Request) {
+	if err := r.ParseForm(); err != nil {
+		fmt.Fprintf(w, "ParseForm() err: %v", err) // the value in a default format when printing structs, the plus flag (%+v) adds field names
+		return
+	}
+	
+	fmt.Fprintf(w, "POST request successful")
+	name := r.FormValue("name")
+	address := r.FormValue("address")
+	fmt.Fprintf(w, "name: %s and address: %s\n", name, address)
+} 
+
 // ResponseWriter: This is the mechanism used for sending responses to any connected HTTP clients. It's also how response headers are set.
 // http.Request: is a pointer to an http.Request. It's how data is retrieved from the web request. For example, the details from a form submission can be accessed through the request pointer.
 // ref: https://www.honeybadger.io/blog/go-web-services/
