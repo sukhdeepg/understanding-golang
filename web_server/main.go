@@ -14,15 +14,17 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 	
 	fmt.Fprintf(w, "POST request successful")
 	name := r.FormValue("name")
-	address := r.FormValue("address")
-	fmt.Fprintf(w, "name: %s and address: %s\n", name, address)
+	address := r.FormValue("addr")
+	fmt.Fprintf(w, "\nname: %s", name)
+	fmt.Fprintf(w, "\naddress: %s", address)
 } 
 
 // ResponseWriter: This is the mechanism used for sending responses to any connected HTTP clients. It's also how response headers are set.
 // http.Request: is a pointer to an http.Request. It's how data is retrieved from the web request. For example, the details from a form submission can be accessed through the request pointer.
 // ref: https://www.honeybadger.io/blog/go-web-services/
 func helloHandler(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "hello" {
+
+	if r.URL.Path != "/hello" {
 		http.Error(w, "404 not found", http.StatusNotFound)
 		return
 	}
